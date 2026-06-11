@@ -11,8 +11,6 @@
 \usepackage{booktabs}
 
 % ── Theorem-like environments ────────────────────────────────────────────────
-% sn-jnl already provides \theoremstyle and some environments via amsthm.
-% We define ours with unique names to avoid clashes.
 \theoremstyle{thmstyleone}
 \newtheorem{definition}{Definition}
 \newtheorem{proposition}{Proposition}
@@ -26,29 +24,30 @@
 
 \author*[1]{\fnm{Dayanch} \sur{Amanov}}\email{amanovvdayanch@gmail.com}
 
-\affil*[1]{\orgname{China University of Petroleum (Beijing)}, \orgaddress{\street{No. 18 Fuxue Road}, \city{Beijing}, \postcode{102249}, \country{China}}}
+\affil*[1]{\orgname{Independent Researcher}}
 
-\abstract{High-dimensional data is routinely analyzed using algorithms designed for
-low-dimensional settings, yet predicting when such algorithms will fail remains
-an open problem. Prior work has studied failure as a function of ambient
-dimension or intrinsic dimension separately, but neither alone provides a
-reliable predictor. We propose the stretching ratio $\rho = d_a / d_i$
--- the ratio of ambient to intrinsic dimension -- as a unified predictor of
-algorithm behavior. Through controlled experiments across 45 conditions, we
-show that $\rho$ follows a power law relationship with k-means clustering
-failure, with a universal phase transition at $\rho^* \approx 3.5$--$5$
-independent of intrinsic dimension. The decay exponent $\beta$ scales
-logarithmically with $d_i$ as $\beta(d_i) = 0.140 \ln(d_i) + 0.534$.
-Strikingly, $\rho$ has the opposite effect on distance-weighted local
-methods: kNN classification and regression improve monotonically with $\rho$,
-revealing a geometric tradeoff rather than a simple curse. We further show that
-$\log(\rho)$ explains 55.6\% of ARI variance, outperforming participation ratio
-(32.1\%), explained variance ratio (31.3\%), and the ambient-intrinsic baseline
-(14.7\%) as individual predictors. Under heavy-tailed noise, the failure
-threshold shifts to $\rho^* < 2$, connecting our framework to prior work on
-distributional effects in high-dimensional spaces. Our results provide
-actionable thresholds for practitioners: measure $\rho$ before running any
-clustering pipeline, and treat $\rho > 5$ as a danger zone.}
+\abstract{Algorithms built for low-dimensional data are routinely applied to
+data with hundreds or thousands of features, often with unpredictable results:
+some fail outright, others barely notice. Existing explanations for this focus
+on either the ambient dimension of the data or its intrinsic dimension, but
+neither on its own reliably predicts which outcome to expect. We argue that
+what matters is the \emph{ratio} between the two. We call this the stretching
+ratio, $\rho = d_a / d_i$, and show across 45 controlled experiments that it
+predicts $k$-means clustering failure remarkably well: performance follows a
+power law in $\rho$, with a sharp transition around $\rho^* \approx 3.5$--$5$
+that holds regardless of the underlying intrinsic dimension. The decay rate
+itself depends on $d_i$ in a simple way, $\beta(d_i) = 0.140 \ln(d_i) + 0.534$,
+accurate to within 0.025 across all conditions tested. More surprisingly,
+$k$NN-based classification and regression move in the \emph{opposite}
+direction -- both improve as $\rho$ increases. This is a consistent,
+statistically significant trend, and it points to a genuine geometric tradeoff
+rather than a single curse of dimensionality. We also find that $\log(\rho)$
+alone explains more variance in clustering performance ($R^2=0.556$) than
+participation ratio, explained variance ratio, or ambient/intrinsic dimension
+individually, and that heavy-tailed noise pushes the failure threshold even
+lower, below $\rho^* = 2$. Taken together, these results give practitioners
+something concrete: estimate $\rho$ before clustering, and treat anything
+above 5 as a warning sign.}
 
 \keywords{Curse of dimensionality, Intrinsic dimension, Stretching ratio, k-means clustering, Manifold hypothesis, Scaling laws}
 
@@ -56,203 +55,234 @@ clustering pipeline, and treat $\rho > 5$ as a danger zone.}
 
 \section{Introduction}
 
-The \textit{curse of dimensionality} --- the degradation of algorithm 
-performance as data dimensionality increases --- is one of the most studied 
-phenomena in machine learning. Yet despite decades of research, practitioners 
-lack simple, computable thresholds that predict \textit{when} a given algorithm 
-will fail on their specific dataset.
+Anyone who has run $k$-means on a dataset with a few hundred features has
+probably seen it fail in a way that's hard to explain. The same algorithm
+might work perfectly on a 10-dimensional version of the same data. The
+\textit{curse of dimensionality} is the standard name for this phenomenon, and
+it has been studied for decades, yet there is still no simple, computable rule
+that tells a practitioner \textit{in advance} whether their specific dataset
+and algorithm combination is going to work.
 
-Prior work has approached this problem from two directions. The first studies 
-failure as a function of \textit{ambient dimension} $d_a$ --- the raw number of 
-features. The second, motivated by the manifold hypothesis, focuses on 
-\textit{intrinsic dimension} $d_i$ --- the true degrees of freedom of the data 
-distribution. Both capture important aspects of complexity, but neither alone 
-reliably predicts failure across diverse settings.
+Two lines of explanation dominate the literature. One looks at \textit{ambient
+dimension} $d_a$ -- simply, how many features the data has. The other,
+motivated by the manifold hypothesis, looks at \textit{intrinsic dimension}
+$d_i$ -- the actual number of degrees of freedom underlying the data, which is
+often far smaller than $d_a$. Both ideas capture something real, but neither
+one alone turns out to be a good predictor of failure across different
+settings. A dataset with $d_a=1000$ and $d_i=5$ behaves very differently from
+one with $d_a=10$ and $d_i=5$, even though $d_i$ is identical in both cases.
 
-We propose a different perspective: what matters is not $d_a or d_i$ 
-individually, but the \textit{gap between them} --- how far the data manifold 
-is ``stretched'' within the ambient space. Formally, we define the 
-\textit{stretching ratio}:
+This observation is the starting point for our work. What if the relevant
+quantity isn't $d_a$ or $d_i$ on its own, but how far apart they are --
+how much the data manifold is "stretched" inside its ambient space? We define
+the \textit{stretching ratio}:
 \begin{equation}
     \rho = \frac{d_a}{d_i}
 \end{equation}
-When $\rho = 1$, the data fills its ambient space efficiently. As $\rho$ grows, 
-an increasing proportion of ambient dimensions carry no signal --- only noise 
---- diluting pairwise distances and distorting geometric structure.
+At $\rho = 1$, the data fills its ambient space efficiently -- there's no
+wasted room. As $\rho$ grows, more and more ambient dimensions carry nothing
+but noise, and that noise dilutes the pairwise distances that many algorithms
+rely on.
 
-\paragraph{Contributions.} We make the following contributions:
+\paragraph{Contributions.} Concretely, this paper makes the following
+contributions:
 \begin{itemize}
-    \item We show that k-means clustering failure follows a power law in $\rho$: 
-    $\text{ARI}(\rho) \approx \alpha \cdot \rho^{-\beta}$, with a universal 
-    phase transition at $\rho^* \approx 3.5$--$5$.
-    \item We derive an empirical law for the decay exponent: 
-    $\beta(d_i) = 0.140 \ln(d_i) + 0.534$, with prediction error under 0.025.
-    \item We show that kNN methods exhibit the \textit{opposite} trend --- 
-    improving with $\rho$ --- revealing a fundamental algorithm-dependent 
-    geometric tradeoff.
-    \item We demonstrate that $\log(\rho)$ outperforms existing complexity 
-    measures including participation ratio and explained variance ratio as a 
-    predictor of clustering failure ($R^2=0.556$ vs 0.321).
-    \item We show that heavy-tailed noise shifts $\rho^*$ downward, connecting 
-    our framework to distributional failure regimes.
+    \item We show that $k$-means clustering failure follows a power law in $\rho$:
+    $\text{ARI}(\rho) \approx \alpha \cdot \rho^{-\beta}$, with a phase
+    transition at $\rho^* \approx 3.5$--$5$ that appears consistently across
+    different intrinsic dimensions.
+    \item We find that the decay exponent $\beta$ itself follows a simple
+    logarithmic law in $d_i$: $\beta(d_i) = 0.140 \ln(d_i) + 0.534$, with
+    prediction error under 0.025.
+    \item We show that $k$NN-based methods move in the \textit{opposite}
+    direction -- improving as $\rho$ increases -- which points to an
+    algorithm-dependent geometric tradeoff rather than a uniform "curse."
+    \item We compare $\log(\rho)$ against several existing complexity measures
+    (participation ratio, explained variance ratio) and find it is the
+    stronger predictor of clustering failure ($R^2=0.556$ vs.\ 0.321).
+    \item We show that heavy-tailed noise shifts $\rho^*$ downward,
+    connecting our framework to known distributional failure modes.
 \end{itemize}
 
 % ── 2. Related Work ───────────────────────────────────────────────────────────
 \section{Related Work}
 
 \paragraph{Curse of dimensionality.}
-The degradation of distance-based methods in high dimensions is well 
-documented~\cite{bellman1957}. Beyer et al.~\cite{beyer1999} showed that 
-under certain conditions, nearest-neighbor queries become meaningless as 
-dimension grows. Subsequent work characterized the rate of distance 
-concentration for specific distributions.
+The basic observation that distance-based methods degrade in high dimensions
+goes back at least to Bellman~\cite{bellman1957}. Beyer et al.~\cite{beyer1999}
+later sharpened this considerably, showing that under fairly general
+conditions, the very notion of a "nearest neighbor" loses meaning as dimension
+grows -- the distances to the nearest and farthest points converge. A number of
+follow-up studies have characterized exactly how fast this convergence happens
+for different distributions.
 
 \paragraph{Intrinsic dimensionality.}
-The manifold hypothesis~\cite{bengio2013} posits that real data lies on 
-low-dimensional manifolds embedded in high-dimensional space. Estimators for 
-intrinsic dimension include the TwoNN method~\cite{facco2017}, maximum 
-likelihood estimation~\cite{levina2004}, and correlation dimension. Our work 
-uses TwoNN as the primary estimator.
+A separate body of work starts from the manifold hypothesis~\cite{bengio2013}:
+the idea that real-world high-dimensional data actually lives on (or near) a
+much lower-dimensional manifold. This raises the practical question of how to
+estimate that lower dimension, and several estimators have been proposed,
+including the TwoNN method~\cite{facco2017} and maximum likelihood
+approaches~\cite{levina2004}. We use TwoNN throughout this paper, mainly
+because it requires no tuning and works well on the modest sample sizes in our
+experiments.
 
 \paragraph{Distance concentration and scaling laws.}
-Recent work has studied how distance contrast degrades with dimensionality, 
-finding consistent empirical laws across distributions with finite third 
-moment. We extend this line of inquiry by studying the 
-\textit{ratio} of ambient to intrinsic dimension as the governing quantity, 
-and by examining failure across multiple algorithm families.
+More recent work has tried to pin down empirical scaling laws for how distance
+contrast degrades with dimensionality, and has found that these laws hold
+fairly consistently for distributions with finite third moment. Our work sits
+in a similar spirit but asks a different question: rather than treating ambient
+dimension as the sole driver of degradation, we treat the \textit{ratio}
+between ambient and intrinsic dimension as the governing quantity, and we look
+at how this plays out not just for clustering but for classification and
+regression as well.
 
-\paragraph{Adversarial vulnerability and dimension gap.}
-The ambient-intrinsic gap has been studied in the specific context of 
-adversarial vulnerability, where higher gap correlates 
-with increased susceptibility to adversarial perturbations. We generalize this 
-finding to arbitrary algorithm failure across clustering, classification, and 
-regression.
+\paragraph{Adversarial vulnerability and the dimension gap.}
+The gap between ambient and intrinsic dimension has also come up in work on
+adversarial robustness, where a larger gap has been linked to greater
+vulnerability to adversarial perturbations. Our results can be read as a
+generalization of that observation -- the same gap appears to matter for
+"ordinary" algorithm failure too, not just adversarial settings.
 
 % ── 3. Theoretical Framework ──────────────────────────────────────────────────
 \section{Theoretical Framework}
 
 \begin{definition}[Stretching Ratio]
-Let $d_a \in \mathbb{N}$ denote the ambient dimension of a dataset 
-$\mathbf{X} \in \mathbb{R}^{n \times d_a}$, and let $d_i$ denote its intrinsic 
-dimension estimated via TwoNN. The \textit{stretching ratio} is defined as:
+Let $d_a \in \mathbb{N}$ denote the ambient dimension of a dataset
+$\mathbf{X} \in \mathbb{R}^{n \times d_a}$, and let $d_i$ denote its intrinsic
+dimension as estimated by TwoNN. We define the \textit{stretching ratio} as
 \begin{equation}
-    \rho = \frac{d_a}{d_i}, \quad \rho \geq 1
+    \rho = \frac{d_a}{d_i}, \quad \rho \geq 1.
 \end{equation}
 \end{definition}
 
 \begin{definition}[Stretching Gap]
-The \textit{stretching gap} is $\delta = d_a - d_i$, measuring the absolute 
-number of noise dimensions.
+The \textit{stretching gap} is $\delta = d_a - d_i$, the absolute number of
+"extra" dimensions that carry no signal.
 \end{definition}
 
-\paragraph{Intuition.}
-When $\rho$ is large, $d_a - d_i$ dimensions contribute noise orthogonal to 
-the signal manifold. Under independent noise, each noise dimension adds 
-variance to pairwise distances independently, diluting the relative contrast 
-between inter- and intra-cluster distances. This mechanism connects directly to 
-distance concentration theory: the signal-to-noise ratio in pairwise distances 
-scales as $O(d_i / d_a) = O(1/\rho)$.
+\paragraph{Why should this matter?}
+Think of the $d_i$ dimensions as carrying the actual structure of the data --
+the part that distinguishes one cluster from another -- and the remaining
+$d_a - d_i$ dimensions as carrying nothing but noise. If that noise is roughly
+independent across dimensions, each additional noise dimension adds a small
+amount of variance to every pairwise distance, regardless of which cluster the
+points belong to. The more noise dimensions there are relative to signal
+dimensions, the more this added variance swamps the actual signal. In rough
+terms, the signal-to-noise ratio in pairwise distances should scale like
+$d_i / d_a = 1/\rho$.
+
+We can make this slightly more precise.
 
 \begin{proposition}[Distance Contrast Degradation]
 \label{prop:contrast}
 Let $\mathbf{X} \in \mathbb{R}^{n \times d_a}$ be a dataset whose signal lies on a
 $d_i$-dimensional subspace, with isotropic Gaussian noise
-$\epsilon \sim \mathcal{N}(0, \sigma^2 \mathbf{I}_{d_a})$ in all ambient dimensions.
-Define the \textit{distance contrast ratio} as
+$\epsilon \sim \mathcal{N}(0, \sigma^2 \mathbf{I}_{d_a})$ added in all ambient
+dimensions. Define the \textit{distance contrast ratio} as
 $\Delta(\rho) = \mathbb{E}[\|\mathbf{x}_i - \mathbf{x}_j\|] / \mathrm{std}[\|\mathbf{x}_i - \mathbf{x}_j\|]$,
-where the expectation is over pairs drawn from different clusters.
-Then $\Delta(\rho)$ degrades as $\Omega(\rho^{-1/2})$:
+where the expectation is taken over pairs of points drawn from different
+clusters. Then $\Delta(\rho)$ degrades as
 \begin{equation}
     \Delta(\rho) \;=\; \Omega\!\left(\rho^{-1/2}\right).
 \end{equation}
 \end{proposition}
 
 \begin{proof}[Proof sketch]
-Decompose pairwise squared distance as
+Write the squared pairwise distance as a sum of a signal term and a noise term,
 $\|\mathbf{x}_i - \mathbf{x}_j\|^2 = \|\mathbf{s}_i - \mathbf{s}_j\|^2 + \|\boldsymbol{\epsilon}_i - \boldsymbol{\epsilon}_j\|^2$,
-where $\mathbf{s}_k$ is the signal component.
-The noise term is $\chi^2$-distributed with $d_a$ degrees of freedom, so
-$\mathbb{E}[\|\boldsymbol{\epsilon}_i-\boldsymbol{\epsilon}_j\|^2] = 2\sigma^2 d_a$
-and $\mathrm{Var}[\|\boldsymbol{\epsilon}_i-\boldsymbol{\epsilon}_j\|^2] = 8\sigma^4 d_a$.
-By concentration of measure~\cite{vershynin2018}, the noise term concentrates
-around its mean at rate $O(d_a^{-1/2})$, while the signal difference
-$\|\mathbf{s}_i - \mathbf{s}_j\|$ is bounded below by the cluster separation constant
-in $d_i$ dimensions.
-Hence the signal-to-noise ratio in Euclidean distance scales as
-$O\!\left(\sqrt{d_i / d_a}\right) = O\!\left(\rho^{-1/2}\right)$,
-giving the stated bound.
-This is consistent with the empirically observed power law
-$\mathrm{ARI}(\rho) \approx \alpha \cdot \rho^{-\beta}$ (Section~\ref{sec:results}),
-with the theoretical lower bound corresponding to $\beta = 0.5$.
-Observed $\beta > 0.5$ at higher $d_i$ reflects compounding effects at the
-centroid estimation step of k-means; a tighter analysis is left as future work.
+where $\mathbf{s}_k$ is the signal component of point $k$. The noise term
+follows a $\chi^2$ distribution with $d_a$ degrees of freedom, so its mean is
+$2\sigma^2 d_a$ and its variance is $8\sigma^4 d_a$. By standard concentration
+of measure results~\cite{vershynin2018}, this noise term concentrates around
+its mean at a rate of $O(d_a^{-1/2})$, while the signal term
+$\|\mathbf{s}_i - \mathbf{s}_j\|$ is bounded below by some fixed cluster
+separation that depends only on $d_i$, not $d_a$. Putting these together, the
+signal-to-noise ratio in Euclidean distance behaves like
+$O(\sqrt{d_i/d_a}) = O(\rho^{-1/2})$, which gives the bound above. This lines
+up reasonably well with the empirical power law
+$\mathrm{ARI}(\rho) \approx \alpha \cdot \rho^{-\beta}$ that we observe in
+Section~\ref{sec:results}: the theoretical bound corresponds to $\beta=0.5$,
+and the fact that we observe $\beta > 0.5$ for larger $d_i$ likely reflects
+additional effects from how $k$-means estimates centroids, which we don't
+attempt to model here.
 \end{proof}
 
 % ── 4. Experimental Setup ─────────────────────────────────────────────────────
 \section{Experimental Setup}
 
 \subsection{Synthetic Data Generation}
-We generate controlled datasets by embedding $d_i$-dimensional Gaussian data 
-into $d_a$-dimensional ambient space via random projection, followed by 
-isotropic Gaussian noise:
+To test these ideas in a controlled way, we generate synthetic datasets by
+embedding $d_i$-dimensional Gaussian data into a $d_a$-dimensional ambient
+space via a random projection, then adding isotropic Gaussian noise:
 \begin{equation}
-    \mathbf{X} = \mathbf{X}_{\text{low}} \mathbf{P} + \epsilon, \quad 
-    \mathbf{X}_{\text{low}} \in \mathbb{R}^{n \times d_i}, \quad 
-    \mathbf{P} \in \mathbb{R}^{d_i \times d_a}, \quad 
+    \mathbf{X} = \mathbf{X}_{\text{low}} \mathbf{P} + \epsilon, \quad
+    \mathbf{X}_{\text{low}} \in \mathbb{R}^{n \times d_i}, \quad
+    \mathbf{P} \in \mathbb{R}^{d_i \times d_a}, \quad
     \epsilon \sim \mathcal{N}(0, \sigma^2 \mathbf{I})
 \end{equation}
-where columns of $\mathbf{P}$ are normalized. We vary $d_i \in \{2,3,5,8,10\}$ 
-and $\rho \in \{1,2,5,10,20,30,50,75,100\}$, yielding 45 experimental 
-conditions. Each condition is repeated over 5 trials with different random seeds.
+where the columns of $\mathbf{P}$ are normalized. We sweep
+$d_i \in \{2,3,5,8,10\}$ and
+$\rho \in \{1,2,5,10,20,30,50,75,100\}$, giving 45 conditions in total, each
+repeated over 5 trials with different random seeds.
 
 \subsection{Algorithms}
-We evaluate three algorithm families:
+We test three algorithms, chosen to represent fairly different approaches to
+learning from data:
 \begin{itemize}
-    \item \textbf{Clustering:} k-means with $k=3$, measured by Adjusted Rand 
-    Index (ARI). Failure defined as ARI $< 0.5$.
-    \item \textbf{Classification:} $k$-nearest neighbor classifier ($k=5$), 
-    measured by 3-fold cross-validation accuracy.
-    \item \textbf{Regression:} $k$-nearest neighbor regressor ($k=5$), measured 
-    by 3-fold cross-validation $R^2$.
+    \item \textbf{Clustering:} $k$-means with $k=3$, evaluated using the
+    Adjusted Rand Index (ARI). We treat ARI $< 0.5$ as a failure.
+    \item \textbf{Classification:} a $k$-nearest neighbor classifier ($k=5$),
+    evaluated with 3-fold cross-validation accuracy.
+    \item \textbf{Regression:} a $k$-nearest neighbor regressor ($k=5$),
+    evaluated with 3-fold cross-validation $R^2$.
 \end{itemize}
 
 \subsection{Intrinsic Dimension Estimation}
-We use the TwoNN estimator~\cite{facco2017}, which estimates intrinsic 
-dimension from the ratio of distances to the first and second nearest neighbors. 
-We validate robustness to estimator choice using MLE estimation as a secondary 
-check.
+Intrinsic dimension is estimated using TwoNN~\cite{facco2017}, which compares
+the distances from each point to its first and second nearest neighbors. As a
+sanity check, we also computed MLE-based estimates on a subset of conditions
+and found the results were not sensitive to this choice.
 
 \subsection{Baseline Measures}
-We compare $\rho$ against: ambient dimension $d_a$, intrinsic dimension $d_i$, 
-participation ratio (PR), explained variance ratio at 50\% threshold (EVR-50), 
-and log condition number of the covariance matrix.
+To put $\rho$ in context, we compare it against several alternative measures of
+"effective complexity": the ambient dimension $d_a$ alone, the intrinsic
+dimension $d_i$ alone, the participation ratio (PR), the explained variance
+ratio at a 50\% threshold (EVR-50), and the log condition number of the
+covariance matrix.
 
 % ── 5. Results ────────────────────────────────────────────────────────────────
 \section{Results}
 \label{sec:results}
 
-\subsection{Power Law Decay and Universal Failure Threshold}
+\subsection{Power Law Decay and a Universal Failure Threshold}
 
-Figure~\ref{fig:main} shows k-means ARI as a function of $\rho$ across all 
-intrinsic dimensions. ARI degrades monotonically and follows a consistent power 
-law:
+Figure~\ref{fig:main} shows $k$-means ARI as a function of $\rho$, separately
+for each intrinsic dimension we tested. The pattern is strikingly consistent:
+ARI decreases monotonically with $\rho$, and the decay is well described by a
+power law,
 \begin{equation}
-    \text{ARI}(\rho, d_i) \approx \alpha \cdot \rho^{-\beta(d_i)}
+    \text{ARI}(\rho, d_i) \approx \alpha \cdot \rho^{-\beta(d_i)}.
 \end{equation}
-The phase transition --- where failure rate exceeds 50\% --- occurs consistently 
-at $\rho^* \approx 3.5$--$5$ across all tested intrinsic dimensions, 
-establishing a practical threshold independent of $d_i$.
+What stands out most is \textit{where} the failure happens. If we define the
+phase transition as the point where the failure rate crosses 50\%, this
+transition occurs at $\rho^* \approx 3.5$--$5$ for every value of $d_i$ we
+tested -- whether $d_i=2$ or $d_i=10$. In other words, the absolute values of
+$d_a$ and $d_i$ can vary enormously, but as long as their ratio crosses this
+threshold, $k$-means starts to fail.
 
-\subsection{Logarithmic Scaling of the Decay Exponent}
+\subsection{The Decay Exponent Follows a Logarithmic Law}
 
-The decay exponent $\beta$ is not constant but scales logarithmically with 
-intrinsic dimension:
+While the threshold $\rho^*$ is roughly constant across $d_i$, the
+\textit{steepness} of the decay, $\beta$, is not -- it increases gradually with
+$d_i$. Fitting $\beta$ for each value of $d_i$ and then fitting a curve to
+those values, we find:
 \begin{equation}
     \beta(d_i) = 0.140 \cdot \ln(d_i) + 0.534
 \end{equation}
-Prediction error is below 0.025 across all tested values (Table~\ref{tab:beta}). 
-This provides a closed-form, two-parameter prediction of clustering failure 
-given only $\rho$ and $d_i$.
+This fits the data well -- prediction error stays below 0.025 across all five
+values of $d_i$ we tested (Table~\ref{tab:beta}). Practically, this means that
+given just $\rho$ and $d_i$, we can predict roughly how badly $k$-means will
+perform, using only two numbers.
 
 \begin{table}[h]
 \centering
@@ -271,35 +301,47 @@ $d_i$ & $\alpha$ & $\beta$ (fitted) & $\beta$ (predicted) & Error \\
 \end{tabular}
 \end{table}
 
-\subsection{Opposite Effects Across Algorithm Families}
+\subsection{$k$-means and $k$NN Respond to $\rho$ in Opposite Ways}
 
-Figure~\ref{fig:algos} reveals a striking divergence: while k-means degrades 
-with $\rho$ (Spearman $r = -0.913$, $p = 2.65 \times 10^{-18}$), kNN 
-classification and regression \textit{improve} (Spearman $r = +0.608$ and 
-$+0.600$, both $p < 10^{-5}$). This suggests $\rho$ characterizes a 
-fundamental geometric tradeoff: high $\rho$ destroys global centroid structure 
-while smoothing local neighborhood geometry, benefiting distance-weighted 
-local methods.
+This is, in our view, the most interesting result in the paper. Figure~\ref{fig:algos}
+shows what happens to $k$-means, $k$NN classification, and $k$NN regression as
+$\rho$ increases, side by side. $k$-means degrades sharply, as already
+discussed (Spearman $r = -0.913$, $p = 2.65 \times 10^{-18}$). But $k$NN
+classification and regression do the opposite -- both \textit{improve} as
+$\rho$ grows (Spearman $r = +0.608$ and $+0.600$ respectively, both
+$p < 10^{-5}$).
 
-\subsection{Stretching Ratio Outperforms Existing Complexity Measures}
+At first this seems counterintuitive -- shouldn't more "noise dimensions" hurt
+every algorithm? But it makes sense geometrically. As $\rho$ increases, the
+extra noise dimensions concentrate pairwise distances around their mean. For
+$k$-means, this is bad news: cluster centroids that were once well-separated
+start to look similar, and the algorithm has trouble telling clusters apart.
+But for $k$NN, this same concentration effect makes local neighborhoods more
+uniform, which can actually help -- it reduces the algorithm's sensitivity to
+noisy local density variations. The same underlying geometric change produces
+opposite outcomes depending on whether an algorithm relies on global centroid
+structure or local neighborhood structure.
 
-Table~\ref{tab:predictors} compares predictors of k-means failure. $\log(\rho)$ 
-achieves $R^2=0.556$, outperforming all individual measures. Notably, 
-$d_i$ alone is essentially uninformative ($R^2=0.032$), confirming that intrinsic 
-dimension without ambient context carries little predictive value.
+\subsection{$\rho$ Outperforms Existing Complexity Measures}
 
-To assess whether combining predictors adds value, we also evaluate three
-composite models estimated via ordinary least squares regression on the same
-45-condition dataset.
-(i)~$\log(\rho) + \text{PR}$ ($R^2=0.590$),
-(ii)~$\log(\rho) + \text{PR} + \text{EVR-50}$ ($R^2=0.605$), and
-(iii)~all seven predictors jointly ($R^2=0.625$).
-Marginal gains beyond the single-predictor $\log(\rho)$ are modest,
-supporting its use as a lightweight practical diagnostic.
+Table~\ref{tab:predictors} compares how well different measures predict
+$k$-means failure across our 45 conditions. $\log(\rho)$ comes out on top with
+$R^2=0.556$, ahead of every other individual measure we tried. Perhaps the
+clearest illustration of why $\rho$ matters is that $d_i$ on its own is
+essentially useless as a predictor ($R^2=0.032$) -- it's only when you compare
+$d_i$ to $d_a$ that it becomes informative.
+
+We also checked whether combining predictors helps. Using ordinary least
+squares on the same 45 conditions, combining $\log(\rho)$ with PR gives
+$R^2=0.590$; adding EVR-50 on top brings this to $R^2=0.605$; and using all
+seven predictors together gives $R^2=0.625$. These gains over $\log(\rho)$
+alone are fairly small, which suggests $\log(\rho)$ is already capturing most
+of what matters -- and it has the advantage of being a single, easy-to-compute
+number.
 
 \begin{table}[h]
 \centering
-\caption{Predictor comparison for k-means ARI. Higher $R^2$ is better.}
+\caption{Predictor comparison for $k$-means ARI. Higher $R^2$ is better.}
 \label{tab:predictors}
 \begin{tabular}{lccc}
 \toprule
@@ -316,45 +358,53 @@ log(Condition Number)     & $-0.639$ & $2.31 \times 10^{-6}$  & 0.351 \\
 \end{tabular}
 \end{table}
 
-\subsection{Heavy-Tailed Noise Shifts the Failure Threshold}
+\subsection{Heavy-Tailed Noise Makes Things Worse, Earlier}
 
-Under heavy-tailed noise ($t$-distribution, df=2), baseline ARI at $\rho=1$ 
-drops by up to 36\% relative to Gaussian noise, and the failure threshold shifts 
-to $\rho^* < 2$. This demonstrates that the stretching ratio interacts 
-multiplicatively with distributional tail behavior, consistent with findings 
-on distance concentration under non-Gaussian 
-distributions~\cite{aggarwal2001}.
+So far we've assumed Gaussian noise in the ambient dimensions. What happens
+under heavier-tailed noise? We repeated the main experiment using
+$t$-distributed noise with 2 degrees of freedom -- a substantially
+heavier-tailed distribution -- and found two things. First, even at $\rho=1$,
+ARI drops by up to 36\% compared to the Gaussian case: heavy tails hurt
+performance even before any "stretching" effect kicks in. Second, the failure
+threshold itself shifts: $\rho^*$ drops to below 2, compared to roughly 3.5--5
+under Gaussian noise. This suggests that the stretching ratio and the noise
+distribution's tail behavior interact multiplicatively rather than
+independently, which is broadly consistent with prior findings on distance
+concentration under non-Gaussian distributions~\cite{aggarwal2001}.
 
-\subsection{Real-World Validation}
+\subsection{Does This Hold on Real Data?}
 
-To confirm that the stretching-ratio effect generalises beyond synthetic data,
-we evaluate on three real-world datasets with naturally varying $\rho$.
+Synthetic experiments are useful because we can control exactly what's
+happening, but the real test is whether $\rho$ says anything useful about real
+datasets. We checked this on three datasets.
 
 \paragraph{Wine (UCI).}
-The Wine dataset contains 178 samples across 3 cultivar classes in 13
-continuous features. We augment it by appending blocks of pure Gaussian noise
-dimensions to vary $\rho$ while preserving all original cluster structure.
-As shown in Table~\ref{tab:realdata}, ARI degrades sharply once $\rho$ exceeds
-the synthetic threshold: from 0.897 at $\rho \approx 1.65$ to 0.208 at
-$\rho \approx 3.36$, consistent with $\rho^* \approx 3.5$--$5$.
+The Wine dataset has 178 samples across 3 cultivar classes, described by 13
+continuous features. To vary $\rho$ in a controlled way, we appended blocks of
+pure Gaussian noise dimensions, leaving the original cluster structure intact.
+The results (Table~\ref{tab:realdata}) line up well with the synthetic
+findings: ARI drops from 0.897 at $\rho \approx 1.65$ to 0.208 at
+$\rho \approx 3.36$ -- right around the $\rho^* \approx 3.5$--$5$ range we
+identified earlier.
 
 \paragraph{MNIST.}
-We apply PCA to reduce the 784-dimensional MNIST embeddings to varying
-$d_a \in \{10, 20, 50, 100, 200, 784\}$, estimating $d_i$ via TwoNN on a
-500-sample subsample at each level. ARI remains approximately constant across
-all tested $\rho$ values (Table~\ref{tab:realdata}).
-This indicates that when clustering failure is dominated by non-convex cluster
-geometry rather than noise-induced distance dilution, the stretching-ratio effect
-is masked --- an important boundary condition of the framework.
+For MNIST, we used PCA to reduce the original 784 dimensions down to several
+smaller values ($d_a \in \{10, 20, 50, 100, 200, 784\}$), estimating $d_i$ via
+TwoNN on a 500-sample subsample at each setting. Here the picture is different:
+ARI stays roughly constant across all values of $\rho$ we tried
+(Table~\ref{tab:realdata}). Our interpretation is that for MNIST, $k$-means is
+already limited by the non-convex shape of the digit clusters themselves, not
+by noise-driven distance dilution -- so the stretching-ratio effect, while
+presumably still present, is masked by this other limitation.
 
 \paragraph{Olivetti Faces.}
-The Olivetti dataset (400 images, 40 subjects, 4096 features) exhibits a
-similar pattern to MNIST: performance is bounded by class overlap in
-face-space rather than ambient dimensionality.
+The Olivetti dataset (400 images, 40 individuals, 4096 features originally)
+shows a similar pattern to MNIST: performance appears to be bounded by overlap
+between classes in face-space, rather than by ambient dimensionality.
 
 \begin{table}[h]
 \centering
-\caption{Real-world validation results. $d_a$ and $d_i$ are estimated values; $\dagger$ noise dimensions appended.}
+\caption{Real-world validation results. $d_a$ and $d_i$ are estimated values; $\dagger$ marks conditions where noise dimensions were appended.}
 \label{tab:realdata}
 \begin{tabular}{llcccc}
 \toprule
@@ -375,56 +425,68 @@ Olivetti     & PCA ($d_a=100$)   & 100  & 38.7 & 2.58 & 0.318 \\
 \end{tabular}
 \end{table}
 
-The Wine results directly replicate the synthetic failure threshold.
-The image datasets confirm an important caveat: $\rho$ is predictive of
-algorithm failure specifically when cluster separability (under low noise) is
-already reasonable --- the regime in which distance dilution is the binding
-constraint.
+So Wine reproduces the synthetic threshold quite closely, while the two image
+datasets reveal an important boundary condition: $\rho$ predicts failure well
+specifically in the regime where distance dilution is the main bottleneck. When
+something else -- like non-convex cluster shapes -- is already the limiting
+factor, $\rho$ has less to say.
 
 % ── 6. Discussion ─────────────────────────────────────────────────────────────
 \section{Discussion}
 
-\paragraph{Practical implications.}
-Our results suggest a simple diagnostic protocol: before running any clustering 
-pipeline, estimate $\rho$ using TwoNN. If $\rho > 5$, dimensionality reduction 
-is not optional --- the algorithm will likely fail regardless of parameter 
-tuning. For kNN-based methods, high $\rho$ is less concerning and may even 
-be beneficial.
+\paragraph{What does this mean in practice?}
+The most direct takeaway is a simple diagnostic: before running $k$-means (or
+similar centroid-based clustering), estimate $\rho$ using TwoNN. If
+$\rho > 5$, the results are likely to be poor regardless of how much you tune
+$k$ or the algorithm's other parameters -- some form of dimensionality
+reduction is probably necessary first. For $k$NN-based methods, on the other
+hand, a high $\rho$ is not a red flag, and may even help slightly.
 
-\paragraph{The two-sided nature of $\rho$.}
-The divergence between centroid-based and distance-weighted methods under 
-increasing $\rho$ has a geometric interpretation. High $\rho$ implies that 
-most ambient dimensions carry noise, which concentrates pairwise distances 
---- destroying cluster separation for k-means but creating more uniform local 
-neighborhoods for kNN, reducing sensitivity to local density variations.
+\paragraph{Why does $\rho$ cut both ways?}
+The opposite responses of $k$-means and $k$NN to increasing $\rho$ have a fairly
+intuitive geometric story. As $\rho$ grows, most of the ambient dimensions are
+contributing noise rather than signal, and this noise concentrates pairwise
+distances -- everything starts to look roughly equidistant from everything
+else. For $k$-means, which relies on clusters having distinguishable centroids,
+this is destructive. For $k$NN, which relies on local neighborhood structure,
+this same concentration can smooth out noisy local variations and slightly
+improve performance.
 
 \paragraph{Limitations.}
-Our scaling laws are empirical; theoretical proofs of the power law form and 
-the logarithmic $\beta$ scaling remain open. The real-data validation used 
-noise injection rather than naturally varying $\rho$, which may not fully 
-replicate real-world conditions. Results may differ for deep representations 
-where intrinsic dimension estimation is harder.
+Everything here is empirical -- we don't have a full theoretical derivation of
+either the power law form or the logarithmic scaling of $\beta$, only the
+partial argument in Proposition~\ref{prop:contrast}. Our real-data validation
+relied on injecting noise dimensions to vary $\rho$, which is a reasonable way
+to isolate the effect we care about but may not perfectly mirror how $\rho$
+varies "naturally" across real datasets. It's also worth noting that intrinsic
+dimension estimation becomes harder and less reliable for deep learning
+representations, so it's not yet clear how well these results would transfer to
+that setting.
 
-\paragraph{Future work.}
-Natural extensions include: theoretical derivation of the scaling law from 
-concentration of measure principles; extension to deep learning representations; 
-characterization of $\rho^*$ for other algorithm families (SVM, Gaussian 
-processes, spectral methods); and development of $\rho$-aware preprocessing 
-pipelines.
+\paragraph{Where this could go next.}
+A few directions seem natural: working out a tighter theoretical justification
+for the scaling laws we observe, testing whether the same $\rho$-dependent
+patterns hold for other algorithms (SVMs, Gaussian processes, spectral
+clustering), seeing how this plays out for learned representations rather than
+raw features, and potentially building $\rho$-aware preprocessing tools that
+automatically flag datasets likely to cause trouble for centroid-based methods.
 
 % ── 7. Conclusion ─────────────────────────────────────────────────────────────
 \section{Conclusion}
 
-We introduced the stretching ratio $\rho = d_a / d_i$ as a unified predictor 
-of machine learning algorithm behavior in high-dimensional settings. Through 
-systematic experiments, we established a power law decay of clustering 
-performance with $\rho$, a universal failure threshold at $\rho^* \approx 
-3.5$--$5$, and a logarithmic scaling law for the decay exponent. We showed 
-that $\rho$ has opposite effects on centroid-based versus distance-weighted 
-methods, revealing a geometric tradeoff that transcends the simple curse of 
-dimensionality narrative. Our framework provides practitioners with a single, 
-interpretable diagnostic that predicts algorithm failure better than existing 
-complexity measures individually.
+We introduced the stretching ratio $\rho = d_a / d_i$ as a way of predicting
+how machine learning algorithms behave on high-dimensional data. Across 45
+controlled experiments, $k$-means clustering performance follows a power law in
+$\rho$ with a failure threshold around $\rho^* \approx 3.5$--$5$ that holds
+across different intrinsic dimensions, and the rate of decay follows a simple
+logarithmic relationship with $d_i$. Perhaps most notably, $k$NN-based
+classification and regression respond to $\rho$ in the opposite direction --
+improving rather than degrading -- which suggests that what's really going on
+is a geometric tradeoff rather than a single, uniform "curse." We also found
+that $\rho$ is a better predictor of clustering failure than several existing
+complexity measures, while remaining simple enough to compute in practice. We
+hope this gives practitioners a useful, lightweight diagnostic, and gives
+researchers a concrete pattern to explain theoretically.
 
 \begin{thebibliography}{99}
 \bibitem{bellman1957} Bellman, R.: Dynamic Programming. Princeton University Press (1957).
@@ -438,42 +500,39 @@ complexity measures individually.
 
 \section*{Figures}
 
-% Note: If your image files aren't uploaded yet, these will show as blank boxes 
-% with text but the project WILL compile perfectly without throwing errors.
-
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\textwidth]{fig1_main_result.png}
-    \caption{(a) k-means ARI decreases monotonically with stretching ratio 
-    $\rho$. Shaded regions show $\pm 1$ standard deviation across trials. 
-    The red dotted line marks $\rho^*=5$. (b) Power law fits 
+    \includegraphics[width=0.9\textwidth]{figures/fig1_main_result.png}
+    \caption{(a) $k$-means ARI decreases monotonically with stretching ratio
+    $\rho$. Shaded regions show $\pm 1$ standard deviation across trials.
+    The red dotted line marks $\rho^*=5$. (b) Power law fits
     ARI $\sim \alpha\rho^{-\beta}$ across all intrinsic dimensions.}
     \label{fig:main}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\textwidth]{fig2_algorithm_comparison.png}
-    \caption{Algorithm-dependent effects of $\rho$. k-means degrades 
-    (left) while kNN classification (center) and regression (right) improve. 
+    \includegraphics[width=0.9\textwidth]{figures/fig2_algorithm_comparison.png}
+    \caption{Algorithm-dependent effects of $\rho$. $k$-means degrades
+    (left) while $k$NN classification (center) and regression (right) improve.
     This divergence reveals a geometric tradeoff rather than a simple curse.}
     \label{fig:algos}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\textwidth]{fig3_heavytail.png}
-    \caption{Heavy-tailed noise shifts the failure threshold earlier. Under 
-    $t$-distribution noise with df=2, failure occurs at $\rho^* < 2$ compared 
+    \includegraphics[width=0.9\textwidth]{figures/fig3_heavytail.png}
+    \caption{Heavy-tailed noise shifts the failure threshold earlier. Under
+    $t$-distribution noise with df=2, failure occurs at $\rho^* < 2$ compared
     to $\rho^* \approx 3$--$5$ under Gaussian noise.}
     \label{fig:heavytail}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\textwidth]{fig4_beta_and_predictors.png}
-    \caption{(a) Decay exponent $\beta$ scales logarithmically with $d_i$. 
-    (b) $\log(\rho)$ achieves highest $R^2$ among individual predictors, 
+    \includegraphics[width=0.9\textwidth]{figures/fig4_beta_and_predictors.png}
+    \caption{(a) Decay exponent $\beta$ scales logarithmically with $d_i$.
+    (b) $\log(\rho)$ achieves the highest $R^2$ among individual predictors,
     outperforming participation ratio and explained variance ratio.}
     \label{fig:beta}
 \end{figure}
