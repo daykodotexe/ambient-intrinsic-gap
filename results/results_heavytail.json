@@ -1,0 +1,506 @@
+[
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 3,
+    "rho_true": 1,
+    "ari_mean": 0.8410466962463724,
+    "ari_std": 0.04272350523858127,
+    "failure_rate": 0.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 3,
+    "rho_true": 2,
+    "ari_mean": 0.5397113716279232,
+    "ari_std": 0.11750173087251382,
+    "failure_rate": 0.4
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 3,
+    "rho_true": 5,
+    "ari_mean": 0.1417853113793856,
+    "ari_std": 0.06291695082180704,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 3,
+    "rho_true": 10,
+    "ari_mean": 0.06490529858238096,
+    "ari_std": 0.06430799362582092,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 3,
+    "rho_true": 20,
+    "ari_mean": 0.06241887139823447,
+    "ari_std": 0.027530399545140045,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 3,
+    "rho_true": 30,
+    "ari_mean": 0.045985260333103364,
+    "ari_std": 0.017732829990004015,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 3,
+    "rho_true": 50,
+    "ari_mean": 0.04011015166656484,
+    "ari_std": 0.019792749612700312,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 5,
+    "rho_true": 1,
+    "ari_mean": 0.7764028135550004,
+    "ari_std": 0.0566647387746676,
+    "failure_rate": 0.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 5,
+    "rho_true": 2,
+    "ari_mean": 0.24398524758778076,
+    "ari_std": 0.043268702811430575,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 5,
+    "rho_true": 5,
+    "ari_mean": 0.04649455265475551,
+    "ari_std": 0.022704701313096293,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 5,
+    "rho_true": 10,
+    "ari_mean": 0.04130903910075951,
+    "ari_std": 0.012958441357192098,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 5,
+    "rho_true": 20,
+    "ari_mean": 0.020209671352667533,
+    "ari_std": 0.016970837371338515,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 5,
+    "rho_true": 30,
+    "ari_mean": 0.018501300936701486,
+    "ari_std": 0.02278200485210468,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 5,
+    "rho_true": 50,
+    "ari_mean": 0.019076294588343368,
+    "ari_std": 0.01675091896894637,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 10,
+    "rho_true": 1,
+    "ari_mean": 0.5812360138524625,
+    "ari_std": 0.18213099827707976,
+    "failure_rate": 0.4
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 10,
+    "rho_true": 2,
+    "ari_mean": 0.10981509059247727,
+    "ari_std": 0.048717906972582325,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 10,
+    "rho_true": 5,
+    "ari_mean": 0.02781405975622307,
+    "ari_std": 0.0148537636626022,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 10,
+    "rho_true": 10,
+    "ari_mean": 0.025628859922593818,
+    "ari_std": 0.020245162494900455,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 10,
+    "rho_true": 20,
+    "ari_mean": 0.01550409507758487,
+    "ari_std": 0.01561046637918881,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 10,
+    "rho_true": 30,
+    "ari_mean": 0.004022095667562247,
+    "ari_std": 0.005369422844566692,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "gaussian",
+    "d_intrinsic": 10,
+    "rho_true": 50,
+    "ari_mean": 0.02608507576858548,
+    "ari_std": 0.016865104885142992,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 3,
+    "rho_true": 1,
+    "ari_mean": 0.8198963819462974,
+    "ari_std": 0.05378266185440277,
+    "failure_rate": 0.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 3,
+    "rho_true": 2,
+    "ari_mean": 0.5199607087157844,
+    "ari_std": 0.12469752205857161,
+    "failure_rate": 0.4
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 3,
+    "rho_true": 5,
+    "ari_mean": 0.132433216149332,
+    "ari_std": 0.025451355631396336,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 3,
+    "rho_true": 10,
+    "ari_mean": 0.05724647029273616,
+    "ari_std": 0.038124604008755315,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 3,
+    "rho_true": 20,
+    "ari_mean": 0.06252272061548558,
+    "ari_std": 0.034005438534810015,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 3,
+    "rho_true": 30,
+    "ari_mean": 0.045821610395516556,
+    "ari_std": 0.022449497794385608,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 3,
+    "rho_true": 50,
+    "ari_mean": 0.04502088813360003,
+    "ari_std": 0.009271815127523477,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 5,
+    "rho_true": 1,
+    "ari_mean": 0.7332667832395563,
+    "ari_std": 0.08984804975326151,
+    "failure_rate": 0.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 5,
+    "rho_true": 2,
+    "ari_mean": 0.35027815126967293,
+    "ari_std": 0.13348515512809625,
+    "failure_rate": 0.8
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 5,
+    "rho_true": 5,
+    "ari_mean": 0.0690755504963371,
+    "ari_std": 0.03959552247899978,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 5,
+    "rho_true": 10,
+    "ari_mean": 0.030192614326825917,
+    "ari_std": 0.014916143503673953,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 5,
+    "rho_true": 20,
+    "ari_mean": 0.007441357403123081,
+    "ari_std": 0.004321525771805787,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 5,
+    "rho_true": 30,
+    "ari_mean": 0.020592684432318226,
+    "ari_std": 0.01668910693082912,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 5,
+    "rho_true": 50,
+    "ari_mean": 0.018271215257909795,
+    "ari_std": 0.013288588424450357,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 10,
+    "rho_true": 1,
+    "ari_mean": 0.6496626089766234,
+    "ari_std": 0.11925970105734066,
+    "failure_rate": 0.2
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 10,
+    "rho_true": 2,
+    "ari_mean": 0.130128909745132,
+    "ari_std": 0.07350322851814158,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 10,
+    "rho_true": 5,
+    "ari_mean": 0.023390020540803653,
+    "ari_std": 0.008916572416071702,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 10,
+    "rho_true": 10,
+    "ari_mean": 0.02226857656071493,
+    "ari_std": 0.022895217084929666,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 10,
+    "rho_true": 20,
+    "ari_mean": 0.011127314200100928,
+    "ari_std": 0.009839772537005478,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 10,
+    "rho_true": 30,
+    "ari_mean": 0.01750671672974897,
+    "ari_std": 0.014720662506682705,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df5",
+    "d_intrinsic": 10,
+    "rho_true": 50,
+    "ari_mean": 0.02936556951686046,
+    "ari_std": 0.02103578292915655,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 3,
+    "rho_true": 1,
+    "ari_mean": 0.5344965759025305,
+    "ari_std": 0.1343115381188822,
+    "failure_rate": 0.4
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 3,
+    "rho_true": 2,
+    "ari_mean": 0.3960780760011656,
+    "ari_std": 0.211505182589772,
+    "failure_rate": 0.6
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 3,
+    "rho_true": 5,
+    "ari_mean": 0.1227678157061646,
+    "ari_std": 0.02879590045699796,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 3,
+    "rho_true": 10,
+    "ari_mean": 0.060572102831511064,
+    "ari_std": 0.031977842085138174,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 3,
+    "rho_true": 20,
+    "ari_mean": 0.060739873095776574,
+    "ari_std": 0.02268850151777893,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 3,
+    "rho_true": 30,
+    "ari_mean": 0.05277221929224729,
+    "ari_std": 0.02688052975883422,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 3,
+    "rho_true": 50,
+    "ari_mean": 0.02970420166436748,
+    "ari_std": 0.019854307411765953,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 5,
+    "rho_true": 1,
+    "ari_mean": 0.5408105255231123,
+    "ari_std": 0.13981455327675896,
+    "failure_rate": 0.4
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 5,
+    "rho_true": 2,
+    "ari_mean": 0.24134645829680226,
+    "ari_std": 0.1236775035274899,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 5,
+    "rho_true": 5,
+    "ari_mean": 0.1101788082975802,
+    "ari_std": 0.06483234800907604,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 5,
+    "rho_true": 10,
+    "ari_mean": 0.020536994506465473,
+    "ari_std": 0.015944911148817128,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 5,
+    "rho_true": 20,
+    "ari_mean": 0.016267136522155553,
+    "ari_std": 0.008162286114370393,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 5,
+    "rho_true": 30,
+    "ari_mean": 0.02115739260290079,
+    "ari_std": 0.025549262548194625,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 5,
+    "rho_true": 50,
+    "ari_mean": 0.02779873316733463,
+    "ari_std": 0.024115127801184005,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 10,
+    "rho_true": 1,
+    "ari_mean": 0.3467171081259135,
+    "ari_std": 0.21414154502098762,
+    "failure_rate": 0.6
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 10,
+    "rho_true": 2,
+    "ari_mean": 0.10281676961247202,
+    "ari_std": 0.07007100610914593,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 10,
+    "rho_true": 5,
+    "ari_mean": 0.03995168646487663,
+    "ari_std": 0.026394391164824595,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 10,
+    "rho_true": 10,
+    "ari_mean": 0.01991337789761276,
+    "ari_std": 0.013596685107692581,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 10,
+    "rho_true": 20,
+    "ari_mean": 0.0177001385034274,
+    "ari_std": 0.010020947342162956,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 10,
+    "rho_true": 30,
+    "ari_mean": 0.02325146412588868,
+    "ari_std": 0.012382165734281893,
+    "failure_rate": 1.0
+  },
+  {
+    "noise": "t_df2",
+    "d_intrinsic": 10,
+    "rho_true": 50,
+    "ari_mean": 0.02608075054779353,
+    "ari_std": 0.01590222509410166,
+    "failure_rate": 1.0
+  }
+]

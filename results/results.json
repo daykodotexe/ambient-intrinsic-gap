@@ -1,0 +1,407 @@
+[
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 2,
+    "rho_true": 1,
+    "rho_estimated": 1.0307962739590149,
+    "ari_mean": 0.4024575459299594,
+    "ari_std": 0.05107758058279981,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 4,
+    "rho_true": 2,
+    "rho_estimated": 0.9892485608414476,
+    "ari_mean": 0.7634673185472283,
+    "ari_std": 0.05737214356527306,
+    "failure_rate": 0.0
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 10,
+    "rho_true": 5,
+    "rho_estimated": 1.2691391003320736,
+    "ari_mean": 0.6528221307425778,
+    "ari_std": 0.12357125035810437,
+    "failure_rate": 0.2
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 20,
+    "rho_true": 10,
+    "rho_estimated": 1.7123510724331268,
+    "ari_mean": 0.32941302017404317,
+    "ari_std": 0.15482336010358766,
+    "failure_rate": 0.8
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 40,
+    "rho_true": 20,
+    "rho_estimated": 2.436758765197472,
+    "ari_mean": 0.17329976899054653,
+    "ari_std": 0.05384638228927725,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 60,
+    "rho_true": 30,
+    "rho_estimated": 3.2441057823025092,
+    "ari_mean": 0.09061073146679717,
+    "ari_std": 0.03070173927598999,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 100,
+    "rho_true": 50,
+    "rho_estimated": 4.127955400035956,
+    "ari_mean": 0.041686894711231645,
+    "ari_std": 0.01790996205763679,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 150,
+    "rho_true": 75,
+    "rho_estimated": 5.6605295523448875,
+    "ari_mean": 0.08455228368925982,
+    "ari_std": 0.03564058105385763,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 200,
+    "rho_true": 100,
+    "rho_estimated": 6.924281406431767,
+    "ari_mean": 0.057055690177224117,
+    "ari_std": 0.018392840119508893,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 3,
+    "rho_true": 1,
+    "rho_estimated": 0.9620817494249208,
+    "ari_mean": 0.8428345918759581,
+    "ari_std": 0.044690739267538256,
+    "failure_rate": 0.0
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 6,
+    "rho_true": 2,
+    "rho_estimated": 1.0656792847130647,
+    "ari_mean": 0.7529624093760459,
+    "ari_std": 0.0262179901565107,
+    "failure_rate": 0.0
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 15,
+    "rho_true": 5,
+    "rho_estimated": 1.533095058400904,
+    "ari_mean": 0.5717078170694534,
+    "ari_std": 0.1495272419740981,
+    "failure_rate": 0.4
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 30,
+    "rho_true": 10,
+    "rho_estimated": 2.2717750227207416,
+    "ari_mean": 0.218722571808031,
+    "ari_std": 0.049695838173558805,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 60,
+    "rho_true": 20,
+    "rho_estimated": 3.5938945864618566,
+    "ari_mean": 0.1072304076435312,
+    "ari_std": 0.0308630213209437,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 90,
+    "rho_true": 30,
+    "rho_estimated": 4.985382971914282,
+    "ari_mean": 0.06724535434702315,
+    "ari_std": 0.021232064051562468,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 150,
+    "rho_true": 50,
+    "rho_estimated": 7.508403291688731,
+    "ari_mean": 0.057368124162325916,
+    "ari_std": 0.019140560369696046,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 225,
+    "rho_true": 75,
+    "rho_estimated": 10.331373787156688,
+    "ari_mean": 0.057214105481161424,
+    "ari_std": 0.026056124196134837,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 300,
+    "rho_true": 100,
+    "rho_estimated": 13.362425024115357,
+    "ari_mean": 0.030021759360564882,
+    "ari_std": 0.02040615533968443,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 5,
+    "rho_true": 1,
+    "rho_estimated": 1.0036150566679152,
+    "ari_mean": 0.8171503457230473,
+    "ari_std": 0.02785492858124854,
+    "failure_rate": 0.0
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 10,
+    "rho_true": 2,
+    "rho_estimated": 1.2282472797997457,
+    "ari_mean": 0.7883208679419875,
+    "ari_std": 0.029293810838831116,
+    "failure_rate": 0.0
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 25,
+    "rho_true": 5,
+    "rho_estimated": 2.053909045523043,
+    "ari_mean": 0.5595074173163733,
+    "ari_std": 0.03249652045368937,
+    "failure_rate": 0.2
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 50,
+    "rho_true": 10,
+    "rho_estimated": 3.5224142225905375,
+    "ari_mean": 0.17862031304293777,
+    "ari_std": 0.040888699857466564,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 100,
+    "rho_true": 20,
+    "rho_estimated": 5.854951449353669,
+    "ari_mean": 0.08816882154693831,
+    "ari_std": 0.029935960413843953,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 150,
+    "rho_true": 30,
+    "rho_estimated": 8.663874946570294,
+    "ari_mean": 0.050165252643581924,
+    "ari_std": 0.03505935818275538,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 250,
+    "rho_true": 50,
+    "rho_estimated": 13.98319461428633,
+    "ari_mean": 0.03919171629104956,
+    "ari_std": 0.015931747396662983,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 375,
+    "rho_true": 75,
+    "rho_estimated": 20.201131817333398,
+    "ari_mean": 0.06021201122048884,
+    "ari_std": 0.01923902423632821,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 500,
+    "rho_true": 100,
+    "rho_estimated": 27.234849852688306,
+    "ari_mean": 0.042972797443706585,
+    "ari_std": 0.022903844827810993,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 8,
+    "rho_true": 1,
+    "rho_estimated": 1.070130057015922,
+    "ari_mean": 0.7966016388818289,
+    "ari_std": 0.037960498642108376,
+    "failure_rate": 0.0
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 16,
+    "rho_true": 2,
+    "rho_estimated": 1.4643201110100885,
+    "ari_mean": 0.7681476135193888,
+    "ari_std": 0.05236951732299266,
+    "failure_rate": 0.0
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 40,
+    "rho_true": 5,
+    "rho_estimated": 2.770503737823481,
+    "ari_mean": 0.5111783818301587,
+    "ari_std": 0.10369741716946149,
+    "failure_rate": 0.4
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 80,
+    "rho_true": 10,
+    "rho_estimated": 4.970666655478822,
+    "ari_mean": 0.13649051557409847,
+    "ari_std": 0.04361093091819621,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 160,
+    "rho_true": 20,
+    "rho_estimated": 9.337346835124155,
+    "ari_mean": 0.069764922156934,
+    "ari_std": 0.03120085673658836,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 240,
+    "rho_true": 30,
+    "rho_estimated": 13.970534563836116,
+    "ari_mean": 0.054651105982130035,
+    "ari_std": 0.02141863680156306,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 400,
+    "rho_true": 50,
+    "rho_estimated": 23.271057975432225,
+    "ari_mean": 0.06134084629337796,
+    "ari_std": 0.029605523138756043,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 600,
+    "rho_true": 75,
+    "rho_estimated": 33.30231341762972,
+    "ari_mean": 0.05364442990463934,
+    "ari_std": 0.01544881227890334,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 800,
+    "rho_true": 100,
+    "rho_estimated": 45.05589789574882,
+    "ari_mean": 0.05417440507045472,
+    "ari_std": 0.02831848183448338,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 10,
+    "rho_true": 1,
+    "rho_estimated": 1.1440478159030023,
+    "ari_mean": 0.8273104550756056,
+    "ari_std": 0.02213659593563166,
+    "failure_rate": 0.0
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 20,
+    "rho_true": 2,
+    "rho_estimated": 1.6047801357874367,
+    "ari_mean": 0.778906183075627,
+    "ari_std": 0.05026882313109457,
+    "failure_rate": 0.0
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 50,
+    "rho_true": 5,
+    "rho_estimated": 3.0969583206386124,
+    "ari_mean": 0.49275259532646754,
+    "ari_std": 0.09996597649277282,
+    "failure_rate": 0.6
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 100,
+    "rho_true": 10,
+    "rho_estimated": 5.671182963598262,
+    "ari_mean": 0.1419820265788207,
+    "ari_std": 0.019745736214610437,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 200,
+    "rho_true": 20,
+    "rho_estimated": 10.894307848223484,
+    "ari_mean": 0.08029669735129986,
+    "ari_std": 0.02849472247139404,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 300,
+    "rho_true": 30,
+    "rho_estimated": 16.178694392978045,
+    "ari_mean": 0.04179049408388387,
+    "ari_std": 0.018591573315268797,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 500,
+    "rho_true": 50,
+    "rho_estimated": 26.86651234571095,
+    "ari_mean": 0.04167287163920157,
+    "ari_std": 0.016123374870719596,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 750,
+    "rho_true": 75,
+    "rho_estimated": 39.66304489948375,
+    "ari_mean": 0.0230839861537366,
+    "ari_std": 0.021211157123199972,
+    "failure_rate": 1.0
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 1000,
+    "rho_true": 100,
+    "rho_estimated": 51.944884643639384,
+    "ari_mean": 0.04294985106221474,
+    "ari_std": 0.01015854848154018,
+    "failure_rate": 1.0
+  }
+]

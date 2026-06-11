@@ -1,0 +1,452 @@
+[
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 2,
+    "rho_true": 1,
+    "rho_estimated": 1.0060818582688962,
+    "ari_mean": 0.44212733094270007,
+    "participation_ratio": 1.5174155528673399,
+    "evr_50": 1.0,
+    "log_condition_number": 1.2914764779513532
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 4,
+    "rho_true": 2,
+    "rho_estimated": 1.0634392662724306,
+    "ari_mean": 0.6962086685449799,
+    "participation_ratio": 3.2169540044604275,
+    "evr_50": 2.0,
+    "log_condition_number": 1.7369327198953437
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 10,
+    "rho_true": 5,
+    "rho_estimated": 1.3365739154677663,
+    "ari_mean": 0.1966326012742451,
+    "participation_ratio": 5.803771672542595,
+    "evr_50": 2.6666666666666665,
+    "log_condition_number": 3.2048704992146995
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 20,
+    "rho_true": 10,
+    "rho_estimated": 1.8149699664961159,
+    "ari_mean": 0.10719321499328872,
+    "participation_ratio": 7.5866811791141755,
+    "evr_50": 3.0,
+    "log_condition_number": 3.8637202200627865
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 40,
+    "rho_true": 20,
+    "rho_estimated": 2.409840277704562,
+    "ari_mean": 0.07873411612331827,
+    "participation_ratio": 8.35008550328063,
+    "evr_50": 3.3333333333333335,
+    "log_condition_number": 4.678120789781073
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 60,
+    "rho_true": 30,
+    "rho_estimated": 3.3497470889789476,
+    "ari_mean": 0.06280368441510614,
+    "participation_ratio": 8.722978215876774,
+    "evr_50": 4.0,
+    "log_condition_number": 5.084226976474217
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 100,
+    "rho_true": 50,
+    "rho_estimated": 4.410379227386837,
+    "ari_mean": 0.054657372250031956,
+    "participation_ratio": 8.728693714359837,
+    "evr_50": 4.0,
+    "log_condition_number": 5.825158353530518
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 150,
+    "rho_true": 75,
+    "rho_estimated": 5.792398771576608,
+    "ari_mean": 0.0461778358175473,
+    "participation_ratio": 8.960631623323163,
+    "evr_50": 4.0,
+    "log_condition_number": 6.378986689985715
+  },
+  {
+    "d_intrinsic": 2,
+    "d_ambient": 200,
+    "rho_true": 100,
+    "rho_estimated": 7.57187573145513,
+    "ari_mean": 0.059189479486574215,
+    "participation_ratio": 9.013368707564682,
+    "evr_50": 4.0,
+    "log_condition_number": 6.941160383707973
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 3,
+    "rho_true": 1,
+    "rho_estimated": 0.9703490913814146,
+    "ari_mean": 0.8445328199083736,
+    "participation_ratio": 2.614095490638256,
+    "evr_50": 1.6666666666666667,
+    "log_condition_number": 1.0916209237007442
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 6,
+    "rho_true": 2,
+    "rho_estimated": 1.0956381180855714,
+    "ari_mean": 0.5853077931675955,
+    "participation_ratio": 4.595130639681671,
+    "evr_50": 2.3333333333333335,
+    "log_condition_number": 2.1182379225477335
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 15,
+    "rho_true": 5,
+    "rho_estimated": 1.598846441176368,
+    "ari_mean": 0.14335094113371022,
+    "participation_ratio": 8.294109812381366,
+    "evr_50": 3.6666666666666665,
+    "log_condition_number": 3.3361044117551253
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 30,
+    "rho_true": 10,
+    "rho_estimated": 2.38021394189583,
+    "ari_mean": 0.10306471111207476,
+    "participation_ratio": 10.531163993752692,
+    "evr_50": 4.0,
+    "log_condition_number": 4.037212405765128
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 60,
+    "rho_true": 20,
+    "rho_estimated": 3.651654343269881,
+    "ari_mean": 0.07307484190688453,
+    "participation_ratio": 11.59639441575351,
+    "evr_50": 5.0,
+    "log_condition_number": 4.899821206972015
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 90,
+    "rho_true": 30,
+    "rho_estimated": 5.364856206891866,
+    "ari_mean": 0.03886108610925142,
+    "participation_ratio": 12.342876074068032,
+    "evr_50": 5.0,
+    "log_condition_number": 5.306692829592962
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 150,
+    "rho_true": 50,
+    "rho_estimated": 7.891593237997452,
+    "ari_mean": 0.05092900480880403,
+    "participation_ratio": 12.765859539326456,
+    "evr_50": 5.0,
+    "log_condition_number": 6.0203238601055595
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 225,
+    "rho_true": 75,
+    "rho_estimated": 10.966254972696959,
+    "ari_mean": 0.044201080571514645,
+    "participation_ratio": 13.066552543377073,
+    "evr_50": 5.0,
+    "log_condition_number": 6.808501670445538
+  },
+  {
+    "d_intrinsic": 3,
+    "d_ambient": 300,
+    "rho_true": 100,
+    "rho_estimated": 14.053142801348223,
+    "ari_mean": 0.04182803560982227,
+    "participation_ratio": 13.175626451678001,
+    "evr_50": 5.0,
+    "log_condition_number": 7.638098891610075
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 5,
+    "rho_true": 1,
+    "rho_estimated": 1.0448349304430733,
+    "ari_mean": 0.8033313979936781,
+    "participation_ratio": 4.342279733306101,
+    "evr_50": 2.0,
+    "log_condition_number": 1.46499551764535
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 10,
+    "rho_true": 2,
+    "rho_estimated": 1.2576426766860294,
+    "ari_mean": 0.23058368714905872,
+    "participation_ratio": 7.672814389791693,
+    "evr_50": 3.6666666666666665,
+    "log_condition_number": 2.2338848145177583
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 25,
+    "rho_true": 5,
+    "rho_estimated": 2.1076178787207054,
+    "ari_mean": 0.037388080494789235,
+    "participation_ratio": 13.212197151979368,
+    "evr_50": 5.0,
+    "log_condition_number": 3.319581520351788
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 50,
+    "rho_true": 10,
+    "rho_estimated": 3.680326017773964,
+    "ari_mean": 0.045814142689378605,
+    "participation_ratio": 16.620587234275636,
+    "evr_50": 6.0,
+    "log_condition_number": 4.292343735633437
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 100,
+    "rho_true": 20,
+    "rho_estimated": 6.019000191755606,
+    "ari_mean": 0.021432039803418457,
+    "participation_ratio": 19.165366176241562,
+    "evr_50": 7.0,
+    "log_condition_number": 5.053809245373048
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 150,
+    "rho_true": 30,
+    "rho_estimated": 9.158658441428978,
+    "ari_mean": 0.010336096931257125,
+    "participation_ratio": 20.350127404373904,
+    "evr_50": 8.0,
+    "log_condition_number": 5.588943321105428
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 250,
+    "rho_true": 50,
+    "rho_estimated": 14.853841060632348,
+    "ari_mean": 0.026129783147084865,
+    "participation_ratio": 21.083716138221845,
+    "evr_50": 8.0,
+    "log_condition_number": 6.693727500100748
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 375,
+    "rho_true": 75,
+    "rho_estimated": 20.9962235781254,
+    "ari_mean": 0.05028170113396291,
+    "participation_ratio": 21.574992450962593,
+    "evr_50": 8.0,
+    "log_condition_number": 8.042648897203263
+  },
+  {
+    "d_intrinsic": 5,
+    "d_ambient": 500,
+    "rho_true": 100,
+    "rho_estimated": 28.762049378800324,
+    "ari_mean": 0.03842347583823239,
+    "participation_ratio": 21.824632058244006,
+    "evr_50": 8.0,
+    "log_condition_number": 10.011387986316885
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 8,
+    "rho_true": 1,
+    "rho_estimated": 1.0953490471536058,
+    "ari_mean": 0.693516928283905,
+    "participation_ratio": 6.781912540316687,
+    "evr_50": 3.0,
+    "log_condition_number": 1.7163005016384858
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 16,
+    "rho_true": 2,
+    "rho_estimated": 1.5196237772060128,
+    "ari_mean": 0.17588747298072857,
+    "participation_ratio": 11.772449975051254,
+    "evr_50": 5.0,
+    "log_condition_number": 2.4519989305755527
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 40,
+    "rho_true": 5,
+    "rho_estimated": 2.7988008594824447,
+    "ari_mean": 0.010741615795001202,
+    "participation_ratio": 19.695259583813144,
+    "evr_50": 7.333333333333333,
+    "log_condition_number": 3.705317178576641
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 80,
+    "rho_true": 10,
+    "rho_estimated": 5.1813477515467605,
+    "ari_mean": 0.025024316120323842,
+    "participation_ratio": 26.051781504887938,
+    "evr_50": 9.666666666666666,
+    "log_condition_number": 4.424810961715585
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 160,
+    "rho_true": 20,
+    "rho_estimated": 9.414059605115375,
+    "ari_mean": 0.023138388725987908,
+    "participation_ratio": 29.866013690575002,
+    "evr_50": 11.0,
+    "log_condition_number": 5.356620337651336
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 240,
+    "rho_true": 30,
+    "rho_estimated": 14.088981582479446,
+    "ari_mean": 0.00887908466234883,
+    "participation_ratio": 31.298471152763366,
+    "evr_50": 11.333333333333334,
+    "log_condition_number": 6.165200305027739
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 400,
+    "rho_true": 50,
+    "rho_estimated": 23.23629515422064,
+    "ari_mean": 0.02977078716450848,
+    "participation_ratio": 32.92432685066289,
+    "evr_50": 12.0,
+    "log_condition_number": 7.957148063383016
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 600,
+    "rho_true": 75,
+    "rho_estimated": 33.42894620756729,
+    "ari_mean": 0.042505523259110445,
+    "participation_ratio": 33.671901624358576,
+    "evr_50": 12.666666666666666,
+    "log_condition_number": 16.616463491613597
+  },
+  {
+    "d_intrinsic": 8,
+    "d_ambient": 800,
+    "rho_true": 100,
+    "rho_estimated": 46.00107471488648,
+    "ari_mean": 0.050737277131752356,
+    "participation_ratio": 33.95421444717508,
+    "evr_50": 13.0,
+    "log_condition_number": 8.928800485893914
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 10,
+    "rho_true": 1,
+    "rho_estimated": 1.1715671403533825,
+    "ari_mean": 0.6191424982991331,
+    "participation_ratio": 8.397679440511071,
+    "evr_50": 4.0,
+    "log_condition_number": 1.7894939834149455
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 20,
+    "rho_true": 2,
+    "rho_estimated": 1.6695542504663876,
+    "ari_mean": 0.09682620561833172,
+    "participation_ratio": 14.639529749319317,
+    "evr_50": 6.0,
+    "log_condition_number": 2.571158022622211
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 50,
+    "rho_true": 5,
+    "rho_estimated": 3.146464689950125,
+    "ari_mean": 0.03623572036202213,
+    "participation_ratio": 24.46206922909108,
+    "evr_50": 9.0,
+    "log_condition_number": 3.568628610494102
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 100,
+    "rho_true": 10,
+    "rho_estimated": 5.789598607499612,
+    "ari_mean": 0.03380005738652624,
+    "participation_ratio": 31.453208070994368,
+    "evr_50": 11.333333333333334,
+    "log_condition_number": 4.483426618452023
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 200,
+    "rho_true": 20,
+    "rho_estimated": 11.282315759698138,
+    "ari_mean": 0.015811805770803062,
+    "participation_ratio": 36.47637568147926,
+    "evr_50": 13.0,
+    "log_condition_number": 5.6695751508699495
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 300,
+    "rho_true": 30,
+    "rho_estimated": 16.93493277532146,
+    "ari_mean": 0.007345800475823322,
+    "participation_ratio": 38.75532069090037,
+    "evr_50": 14.0,
+    "log_condition_number": 6.684632775234213
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 500,
+    "rho_true": 50,
+    "rho_estimated": 26.440060771303393,
+    "ari_mean": 0.021509562925168386,
+    "participation_ratio": 40.076715879575005,
+    "evr_50": 15.0,
+    "log_condition_number": 9.555898714377904
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 750,
+    "rho_true": 75,
+    "rho_estimated": 39.35833932527722,
+    "ari_mean": 0.029413872297718222,
+    "participation_ratio": 41.353577654063436,
+    "evr_50": 15.0,
+    "log_condition_number": 9.257002951012977
+  },
+  {
+    "d_intrinsic": 10,
+    "d_ambient": 1000,
+    "rho_true": 100,
+    "rho_estimated": 54.932420134110934,
+    "ari_mean": 0.028505426656819027,
+    "participation_ratio": 41.84177835504794,
+    "evr_50": 15.0,
+    "log_condition_number": 7.749626013347729
+  }
+]
