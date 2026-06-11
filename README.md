@@ -26,7 +26,7 @@ Strikingly, ρ has the **opposite** effect on distance-weighted local methods: k
 ```
 stretching-the-manifold/
 ├── paper/
-│   ├── sn-article.tex          # Full paper (SN Computer Science format)
+│   ├── main.tex          # Full paper (SN Computer Science format)
 │   └── figures/                # All figures used in the paper
 ├── src/
 │   ├── data_generator.py       # Synthetic dataset generation + TwoNN estimator
@@ -66,7 +66,7 @@ python src/plot_paper.py
 
 ## Paper
 
-The full paper is available in [`paper/sn-article.tex`](paper/sn-article.tex), submitted to SN Computer Science (Springer) and posted on arXiv.
+The full paper is available in [`paper/main.tex`](paper/main.tex), submitted to SN Computer Science (Springer) and posted on arXiv.
 
 ## Citation
 
