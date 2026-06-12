@@ -24,7 +24,7 @@
 
 \author*[1]{\fnm{Dayanch} \sur{Amanov}}\email{amanovvdayanch@gmail.com}
 
-\affil*[1]{\orgname{Independent Researcher}}
+\affil*[1]{\orgdiv{College of Artificial Intelligence}, \orgname{China University of Petroleum (Beijing)}, \orgaddress{\city{Beijing}, \postcode{102249}, \country{China}}}
 
 \abstract{Algorithms built for low-dimensional data are routinely applied to
 data with hundreds or thousands of features, often with unpredictable results:
@@ -124,7 +124,18 @@ estimate that lower dimension, and several estimators have been proposed,
 including the TwoNN method~\cite{facco2017} and maximum likelihood
 approaches~\cite{levina2004}. We use TwoNN throughout this paper, mainly
 because it requires no tuning and works well on the modest sample sizes in our
-experiments.
+experiments. More recently, intrinsic dimension has been used to study the
+internal representations of deep networks themselves: Ansuini et
+al.~\cite{ansuini2019} found that the intrinsic dimension of hidden-layer
+representations is typically orders of magnitude smaller than the number of
+units in each layer, and Pope et al.~\cite{pope2021} showed that this
+estimated dimension correlates with sample complexity and generalization. Most
+relevant to our setting, Konz and Mazurowski~\cite{konz2024} showed that
+intrinsic dataset properties -- including intrinsic dimension -- help explain
+why models generalize differently across natural and medical imaging domains,
+which suggests that the ambient-intrinsic gap we study here may also be
+relevant for understanding learned representations, not just raw input
+features.
 
 \paragraph{Distance concentration and scaling laws.}
 More recent work has tried to pin down empirical scaling laws for how distance
@@ -467,9 +478,15 @@ that setting.
 A few directions seem natural: working out a tighter theoretical justification
 for the scaling laws we observe, testing whether the same $\rho$-dependent
 patterns hold for other algorithms (SVMs, Gaussian processes, spectral
-clustering), seeing how this plays out for learned representations rather than
-raw features, and potentially building $\rho$-aware preprocessing tools that
-automatically flag datasets likely to cause trouble for centroid-based methods.
+clustering), and seeing how this plays out for learned representations rather
+than raw features. Given that intrinsic dimension is already known to vary
+substantially across layers of a trained network~\cite{ansuini2019,pope2021},
+it would be natural to ask whether the stretching ratio of a hidden
+representation -- relative to the dimensionality of the layer it lives in --
+predicts how well downstream clustering or retrieval will work on that
+representation. More broadly, this could feed into $\rho$-aware preprocessing
+tools that automatically flag representations likely to cause trouble for
+centroid-based methods.
 
 % ── 7. Conclusion ─────────────────────────────────────────────────────────────
 \section{Conclusion}
@@ -509,6 +526,9 @@ interest.
 \bibitem{levina2004} Levina, E., Bickel, P.: Maximum likelihood estimation of intrinsic dimension. In: NeurIPS (2004).
 \bibitem{vershynin2018} Vershynin, R.: High-Dimensional Probability. Cambridge University Press (2018).
 \bibitem{aggarwal2001} Aggarwal, C.C., Hinneburg, A., Keim, D.A.: On the surprising behavior of distance metrics in high dimensional space. In: ICDT (2001).
+\bibitem{ansuini2019} Ansuini, A., Laio, A., Macke, J.H., Zoccolan, D.: Intrinsic dimension of data representations in deep neural networks. In: NeurIPS (2019).
+\bibitem{pope2021} Pope, P., Zhu, C., Abdelkader, A., Goldblum, M., Goldstein, T.: The intrinsic dimension of images and its impact on learning. In: ICLR (2021).
+\bibitem{konz2024} Konz, N., Mazurowski, M.A.: The effect of intrinsic dataset properties on generalization: Unraveling learning differences between natural and medical images. In: ICLR (2024).
 \end{thebibliography}
 
 \section*{Figures}
